@@ -7,12 +7,7 @@ module Grape
       base.class_eval do
         helpers do
           def paginate(collection)
-            collection.page(params[:page]).per(params[:per_page]).tap do |data|
-              header "X-Total",       data.total_count.to_s
-              header "X-Total-Pages", data.num_pages.to_s
-              header "X-Page",        data.current_page.to_s
-              header "X-Per-Page",    params[:per_page].to_s
-            end
+            collection.page(params[:page]).per(params[:per_page])
           end
         end
 
